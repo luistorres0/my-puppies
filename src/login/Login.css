@@ -60,8 +60,13 @@
     text-align: center;
 }
 
-.login-form-link{
-    text-decoration: none;
+.login-form-toggle-button{
+    font-size: 20px;
+    border: none;
     color: #fe7e6d;
-    font-weight: bold;
+    cursor: pointer;
+}
+
+.login-form-toggle-button:hover{
+    color: #ee7566;
 }
