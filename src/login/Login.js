@@ -10,12 +10,41 @@ function Login() {
   const [formData, setFormData] = useState({ ...initialFormData });
   const [loginMode, setLoginMode] = useState(true);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // TODO: post to backend for authentication
-    console.log(formData);
-    console.log(loginMode);
+    if (loginMode) {
+      // Authenticate
+      try {
+        const response = await fetch("http://localhost:5000/users/authenticate", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ data: formData }),
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        const response = await fetch("http://localhost:5000/users", {
+          method: "post",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ data: formData }),
+        });
+
+        await response.json();
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const handleChange = (e) => {
@@ -63,7 +92,7 @@ function Login() {
         </button>
         <small className="login-form-small">
           {loginMode ? "Or create an account " : "Already registered? Login "}
-          <button className="login-form-toggle-button" onClick={handleToggleMode}>
+          <button className="login-form-toggle-button" type="button" onClick={handleToggleMode}>
             here
           </button>
         </small>
