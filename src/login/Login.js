@@ -9,9 +9,35 @@ function Login() {
 
   const [formData, setFormData] = useState({ ...initialFormData });
   const [loginMode, setLoginMode] = useState(true);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
+  const isLoginInputValid = () => {
+    const { email, password } = formData;
+
+    let isValid = true;
+
+    if (!email.match(/^\S+@\S+$/)) {
+      setEmailError(true);
+      isValid = false;
+    }
+
+    if (password.length < 6) {
+      setPasswordError(true);
+      isValid = false;
+    }
+
+    return isValid;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setEmailError(false);
+    setPasswordError(false);
+
+    if (!isLoginInputValid()) {
+      return;
+    }
 
     if (loginMode) {
       // Authenticate
@@ -69,12 +95,15 @@ function Login() {
           <label htmlFor="email">Email</label>
           <input
             id="email"
-            type="email"
+            type="input"
             name="email"
             onChange={handleChange}
             value={formData.email}
             placeholder={loginMode ? "" : "Enter a valid email"}
           />
+          <small className={emailError ? "login-form-input-error show" : "login-form-input-error"}>
+            Please enter a valid email
+          </small>
         </div>
         <div className="login-form-item">
           <label htmlFor="password">Password</label>
@@ -86,6 +115,11 @@ function Login() {
             value={formData.password}
             placeholder={loginMode ? "" : "Password must be at least 6 characters"}
           />
+          <small
+            className={passwordError ? "login-form-input-error show" : "login-form-input-error"}
+          >
+            Password must contain at least 6 characters
+          </small>
         </div>
         <button className="login-form-button" type="submit">
           {loginMode ? "Login" : "Register"}

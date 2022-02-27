@@ -22,7 +22,7 @@
 }
 
 .login-form-item{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -69,4 +69,15 @@
 
 .login-form-toggle-button:hover{
     color: #ee7566;
+}
+
+.login-form-input-error{
+    visibility: hidden;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #ff0000;
+}
+
+.login-form-input-error.show{
+    visibility: visible;
 }
