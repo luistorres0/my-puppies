@@ -3,6 +3,7 @@ import HomeView from "./home/HomeView";
 import LoginView from "./login/LoginView";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import NotFound from "./common/NotFound";
 
 function App() {
   const navigate = useNavigate();
@@ -46,12 +47,20 @@ function App() {
     }
   };
 
+  const logout = () => {
+    setToken(null);
+    navigate("auth");
+  };
 
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={token ? <HomeView /> : <Navigate to="auth" />}></Route>
+        <Route
+          path="/"
+          element={token ? <HomeView logout={logout} /> : <Navigate to="auth" />}
+        ></Route>
         <Route path="auth" element={<LoginView login={login} signup={signup} />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </div>
   );
