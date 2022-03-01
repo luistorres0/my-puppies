@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 
-function Login() {
+function Login({ login, signup }) {
   const initialFormData = {
     email: "",
     password: "",
@@ -40,36 +40,9 @@ function Login() {
     }
 
     if (loginMode) {
-      // Authenticate
-      try {
-        const response = await fetch("http://localhost:5000/users/authenticate", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ data: formData }),
-        });
-
-        const data = await response.json();
-
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
+      login(formData);
     } else {
-      try {
-        const response = await fetch("http://localhost:5000/users", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ data: formData }),
-        });
-
-        await response.json();
-      } catch (error) {
-        console.log(error);
-      }
+      signup(formData);
     }
   };
 
