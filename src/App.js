@@ -83,7 +83,7 @@ function App() {
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{ isLoggedIn, login, signup, logout }}>
+      <AuthContext.Provider value={{ isLoggedIn, token, login, signup, logout }}>
         <Routes>{routes}</Routes>
       </AuthContext.Provider>
     </div>

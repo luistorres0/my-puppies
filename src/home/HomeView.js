@@ -3,7 +3,7 @@ import "./HomeView.css";
 import { AuthContext } from "../common/authContext";
 
 function HomeView() {
-  const { logout } = useContext(AuthContext);
+  const { logout, token } = useContext(AuthContext);
 
   return (
     <div>
