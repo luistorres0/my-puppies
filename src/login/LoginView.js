@@ -2,10 +2,10 @@ import React from "react";
 import Login from "./Login";
 import "./LoginView.css";
 
-function LoginView({ login, signup }) {
+function LoginView() {
   return (
     <div className="login-view">
-      <Login login={login} signup={signup} />
+      <Login />
     </div>
   );
 }

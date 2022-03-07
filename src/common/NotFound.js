@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 
 const NotFound = () => {
   const location = useLocation();
-  console.log(location);
   return (
     <>
       <h1 style={{ textAlign: "center", marginTop: "200px" }}>

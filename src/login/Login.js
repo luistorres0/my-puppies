@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Login.css";
+import { AuthContext } from "../common/authContext";
 
-function Login({ login, signup }) {
+function Login() {
   const initialFormData = {
     email: "",
     password: "",
@@ -11,6 +12,7 @@ function Login({ login, signup }) {
   const [loginMode, setLoginMode] = useState(true);
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const { login, signup } = useContext(AuthContext);
 
   const isLoginInputValid = () => {
     const { email, password } = formData;
