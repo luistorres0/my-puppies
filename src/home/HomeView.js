@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import "./HomeView.css";
 import { AuthContext } from "../common/authContext";
 import NavBar from "./NavBar";
+import Footer from "./Footer";
 
 function HomeView({ userEmail, userId }) {
   const { logout, token } = useContext(AuthContext);
@@ -24,8 +25,8 @@ function HomeView({ userEmail, userId }) {
   return (
     <div className="home-view">
       <NavBar />
-      <h1>Welcome {userEmail}</h1>
-      <button onClick={deleteAccountHandler}>Delete Account</button>
+      <h1 className="header">Welcome to My Puppies</h1>
+      <Footer />
     </div>
   );
 }

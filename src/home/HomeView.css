@@ -2,5 +2,12 @@
     background-color: #feece9;
     min-height: 100vh;
     color: #2f3a8f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
+.home-view .header{
+    font-size: 54px;
+}
