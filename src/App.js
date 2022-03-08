@@ -9,66 +9,66 @@ import { AuthContext } from "./common/authContext";
 function App() {
   const navigate = useNavigate();
   const [token, setToken] = useState(null);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState(null);
+  const [userId, setUserId] = useState(null);
 
-  const login = useCallback(
-    async (formData) => {
-      try {
-        const response = await fetch("http://localhost:5000/users/login", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ data: formData }),
-        });
+  const login = useCallback(async (formData) => {
+    try {
+      const response = await fetch("http://localhost:5000/users/login", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: formData }),
+      });
 
-        const data = await response.json();
-        const newToken = data.data.token;
-        setToken(newToken);
-        setIsLoggedIn(true);
-        navigate("/", { replace: "/" });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    [navigate]
-  );
+      const data = await response.json();
+      const newToken = data.data.token;
+      const userEmail = data.data.email;
+      const userId = data.data.userId;
+      setToken(newToken);
+      setUserEmail(userEmail);
+      setUserId(userId);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
-  const signup = useCallback(
-    async (formData) => {
-      try {
-        const response = await fetch("http://localhost:5000/users", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ data: formData }),
-        });
+  const signup = useCallback(async (formData) => {
+    try {
+      const response = await fetch("http://localhost:5000/users", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: formData }),
+      });
 
-        const data = await response.json();
-        const newToken = data.data.token;
-        setToken(newToken);
-        setIsLoggedIn(true);
-        navigate("/", { replace: "/" });
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    [navigate]
-  );
+      const data = await response.json();
+      const newToken = data.data.token;
+      const userEmail = data.data.email;
+      const userId = data.data.userId;
+      setToken(newToken);
+      setUserEmail(userEmail);
+      setUserId(userId);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
   const logout = useCallback(() => {
     setToken(null);
-    setIsLoggedIn(false);
+    setUserEmail(null);
+    setUserId(null);
     navigate("auth");
   }, [navigate]);
 
   let routes;
 
-  if (isLoggedIn) {
+  if (token) {
     routes = (
       <>
-        <Route path="/" element={<HomeView />}></Route>
+        <Route path="/" element={<HomeView userEmail={userEmail} userId={userId} />}></Route>
         <Route path="*" element={<Navigate to="/" />}></Route>
       </>
     );
@@ -83,7 +83,7 @@ function App() {
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{ isLoggedIn, token, login, signup, logout }}>
+      <AuthContext.Provider value={{ token, login, signup, logout }}>
         <Routes>{routes}</Routes>
       </AuthContext.Provider>
     </div>
