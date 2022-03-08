@@ -1,0 +1,25 @@
+.nav-bar{
+    background: linear-gradient(#fe7e6d, #f05e4b ) ;
+    color: #fff;
+    padding: 10px 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-bar .logo{
+    border-radius: 50%;
+}
+
+.nav-bar .logout-button{
+    border: 3px solid #fff;
+    border-radius: 5px;
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.nav-bar .logout-button:hover{
+    background-color: #f05e4b;
+}
