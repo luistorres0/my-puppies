@@ -22,15 +22,18 @@ function App() {
         body: JSON.stringify({ data: formData }),
       });
 
-      const data = await response.json();
-      const newToken = data.data.token;
-      const userEmail = data.data.email;
-      const userId = data.data.userId;
-      setToken(newToken);
-      setUserEmail(userEmail);
-      setUserId(userId);
+      const status = response.status;
+      const res = await response.json();
+
+      if (status === 200) {
+        setToken(res.data.token);
+        setUserEmail(res.data.email);
+        setUserId(res.data.userId);
+      } else {
+        throw res.error;
+      }
     } catch (error) {
-      console.log(error);
+      window.alert(error + ". Please try again.");
     }
   }, []);
 
@@ -44,15 +47,18 @@ function App() {
         body: JSON.stringify({ data: formData }),
       });
 
-      const data = await response.json();
-      const newToken = data.data.token;
-      const userEmail = data.data.email;
-      const userId = data.data.userId;
-      setToken(newToken);
-      setUserEmail(userEmail);
-      setUserId(userId);
+      const status = response.status;
+      const res = await response.json();
+
+      if (status === 201) {
+        setToken(res.data.token);
+        setUserEmail(res.data.email);
+        setUserId(res.data.userId);
+      } else {
+        throw res.error;
+      }
     } catch (error) {
-      console.log(error);
+      window.alert(error + ". Please try again.");
     }
   }, []);
 
