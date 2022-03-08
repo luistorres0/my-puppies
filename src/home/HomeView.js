@@ -3,6 +3,7 @@ import "./HomeView.css";
 import { AuthContext } from "../common/authContext";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
+import Gallery from "./Gallery";
 
 function HomeView({ userEmail, userId }) {
   const { logout, token } = useContext(AuthContext);
@@ -26,6 +27,7 @@ function HomeView({ userEmail, userId }) {
     <div className="home-view">
       <NavBar />
       <h1 className="header">Welcome to My Puppies</h1>
+      <Gallery />
       <Footer />
     </div>
   );
