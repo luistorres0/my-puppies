@@ -3,9 +3,9 @@ import "./GalleryItem.css";
 
 const GalleryItem = ({ img, title, body }) => {
   const style = {
-    width: "400px",
-    height: "400px",
-    borderRadius: "50%",
+    width: "350px",
+    height: "250px",
+    borderRadius: "10px 10px 0 0",
     backgroundImage: `url(${img})`,
     backgroundPosition: "center",
     backgroundSize: "cover"

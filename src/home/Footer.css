@@ -1,7 +1,8 @@
 .footer{
     width: 100%;
-    background: linear-gradient(#fe7e6d, #f05e4b );
-    color: #fff;
+    background: #fff;
+    border-top: 1px solid #cac6c6;
+    color: #11151C;
     padding: 10px 60px;
     height: 50px;
     display: flex;
