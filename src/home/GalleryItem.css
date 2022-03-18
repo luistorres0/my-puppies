@@ -1,5 +1,6 @@
 .gallery-item {
   width: 350px;
+  height: 500px;
   box-shadow: 0.3px 0.7px 2.7px rgba(0, 0, 0, 0.022),
     0.8px 1.6px 6.4px rgba(0, 0, 0, 0.032), 1.5px 3px 12px rgba(0, 0, 0, 0.04),
     2.7px 5.4px 21.4px rgba(0, 0, 0, 0.048),
